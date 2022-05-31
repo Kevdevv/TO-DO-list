@@ -26,11 +26,13 @@ ul li::before {
     content: none;
 }
 
-/*
-button:focus,
-.paper-btn:focus,
-[type='button']:focus {
-    border: 6px solid red;
-    content: "bonjour";
+@media screen and (max-width : 600px) {
+
+    button {
+        float: none;
+    }
+
+    li {
+        clear: none;
+    }
 }
-*/
