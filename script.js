@@ -13,12 +13,13 @@ function addLine() {
 
     let btn = document.createElement('button')
     let btnTwo = document.createElement('button')
-    btn.appendChild(document.createTextNode('supprimer'))
-    btnTwo.appendChild(document.createTextNode('modifier'))
+    btn.appendChild(document.createTextNode('Supprimer'))
+    btnTwo.appendChild(document.createTextNode('Marquer'))
     li.appendChild(btn)
     li.appendChild(btnTwo)
 
     btn.addEventListener('click',() => {supp(li.getAttribute('name'))})
+    btnTwo.addEventListener('click', () => { mark(li.getAttribute('name')) })
     number++
     
 }
@@ -26,7 +27,12 @@ function addLine() {
 function supp(a) {
 
     let allElements = document.getElementsByName(a);
-            allElements[0].classList.add('supprimer');
+    allElements[0].classList.add('supprimer');
+}
+
+function mark(a) {
+    let allElements = document.getElementsByName(a);
+    allElements[0].classList.toggle('mark');
 }
 
 addButton.addEventListener('click', addLine)

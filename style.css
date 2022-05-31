@@ -1,16 +1,26 @@
 #add {
     margin-top: 1%;
+    float: none;
 }
 
 li {
-    list-style: none;
+    clear: both;
 }
 
 button {
     margin-left: 2%;
-    margin-top: 2%;
+    margin-bottom: 3%;
+    float: right;
 }
 
 .supprimer {
     display: none;
+}
+
+.mark {
+    text-decoration: line-through;
+}
+
+ul li::before {
+    content: none;
 }
