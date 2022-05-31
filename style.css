@@ -1,0 +1,16 @@
+#add {
+    margin-top: 1%;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+.supprimer {
+    display: none;
+}
