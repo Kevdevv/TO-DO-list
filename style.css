@@ -1,6 +1,7 @@
 #add {
     margin-top: 1%;
     float: none;
+    margin-left: 0%;
 }
 
 li {
@@ -24,3 +25,12 @@ button {
 ul li::before {
     content: none;
 }
+
+/*
+button:focus,
+.paper-btn:focus,
+[type='button']:focus {
+    border: 6px solid red;
+    content: "bonjour";
+}
+*/

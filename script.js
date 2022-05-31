@@ -35,5 +35,11 @@ function mark(a) {
     allElements[0].classList.toggle('mark');
 }
 
-addButton.addEventListener('click', addLine)
+function validation () {
+    if (input.value != "") {
+        addLine()
+    }
+}
+
+addButton.addEventListener('click', validation)
 
