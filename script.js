@@ -6,6 +6,7 @@ let number = 0
 function addLine() {
     
     let li = document.createElement('li')
+
     li.appendChild(document.createTextNode(input.value))
     ul.appendChild(li)
     li.setAttribute('name', number)
@@ -13,26 +14,38 @@ function addLine() {
 
     let btn = document.createElement('button')
     let btnTwo = document.createElement('button')
+
     btn.appendChild(document.createTextNode('Supprimer'))
     btnTwo.appendChild(document.createTextNode('Marquer'))
+
+    btnTwo.textContent
+
     li.appendChild(btn)
     li.appendChild(btnTwo)
 
     btn.addEventListener('click',() => {supp(li.getAttribute('name'))})
-    btnTwo.addEventListener('click', () => { mark(li.getAttribute('name')) })
+    btnTwo.addEventListener('click', () => { mark(li.getAttribute('name'), btnTwo) })
     number++
     
 }
 
 function supp(a) {
 
-    let allElements = document.getElementsByName(a);
-    allElements[0].classList.add('supprimer');
+    let allElements = document.getElementsByName(a)
+    allElements[0].classList.add('supprimer')
 }
 
-function mark(a) {
-    let allElements = document.getElementsByName(a);
-    allElements[0].classList.toggle('mark');
+function mark(a,b) {
+
+    let allElements = document.getElementsByName(a)
+    allElements[0].classList.toggle('mark')
+
+    if (b.textContent == 'Marquer') {
+        b.innerHTML = 'Démarquer'
+
+    } else if (b.textContent == 'Démarquer') {
+        b.innerHTML ='Marquer'
+    }  
 }
 
 function validation () {
@@ -42,4 +55,3 @@ function validation () {
 }
 
 addButton.addEventListener('click', validation)
-
