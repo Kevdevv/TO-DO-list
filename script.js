@@ -51,7 +51,7 @@ function mark(a,b) {
 }
 
 function validation () {
-    if (input.value != "") {
+    if (input.value != "" && input.value.length < 19) {
         addLine()
     }
 }
