@@ -19,9 +19,7 @@ function addLine() {
 
     btn.appendChild(document.createTextNode('Supprimer'))
     btnTwo.appendChild(document.createTextNode('Marquer'))
-
-    btnTwo.textContent
-
+    
     li.appendChild(btn)
     li.appendChild(btnTwo)
 
