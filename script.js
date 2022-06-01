@@ -13,7 +13,9 @@ function addLine() {
     input.value = ''
 
     let btn = document.createElement('button')
+    btn.className = 'btn-small'
     let btnTwo = document.createElement('button')
+    btnTwo.className = 'btn-small btn-danger'
 
     btn.appendChild(document.createTextNode('Supprimer'))
     btnTwo.appendChild(document.createTextNode('Marquer'))
