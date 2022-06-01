@@ -51,8 +51,11 @@ function mark(a,b) {
 }
 
 function validation () {
+    let modal = document.getElementById('modal')
     if (input.value != "" && input.value.length < 19) {
         addLine()
+    } else {
+        modal.click()
     }
 }
 
