@@ -1,5 +1,5 @@
-//localStorage.clear()
-
+localStorage.clear()
+//prout
 let input = document.getElementById('input')
 let addButton = document.getElementById('add')
 let ul = document.querySelector('ul')
@@ -10,7 +10,7 @@ function addLine() {
     let li = document.createElement('li')
 
     li.appendChild(document.createTextNode(input.value))
-    saveLocal(input.value)
+    saveLocal(number,input.value,"non")
 
     ul.appendChild(li)
     li.setAttribute('name', number)
@@ -34,6 +34,7 @@ function addLine() {
     input.value = ''
 }
 
+
 function supp(a, text) {
 
     let allElements = document.getElementsByName(a)
@@ -43,18 +44,71 @@ function supp(a, text) {
     allElements[0].classList.add('supprimer')
 }
 
+function saveMark(mark) {
+    let tabMark
+    if (localStorage.getItem('tabMark') === null) {
+        tabMark = []
+    } else {
+        tabMark = JSON.parse(localStorage.getItem('tabMark'))
+    }
+    tabMark.push(mark)
+    localStorage.setItem('tabMark', JSON.stringify(tabMark))
+}
+
+function removeMark(mark) {
+    let tabMark
+    if (localStorage.getItem('tabMark') === null) {
+        tabMark = []
+    } else {
+        tabMark = JSON.parse(localStorage.getItem('tabMark'))
+    }
+    tab.splice(tabMark.indexOf(mark), 1)
+    localStorage.setItem('tab', JSON.stringify(tabMark))
+}
+
 function mark(a,b) {
 
+    let tab3D = JSON.parse(localStorage.getItem('tab'))
     let allElements = document.getElementsByName(a)
+
+    
+
     allElements[0].classList.toggle('mark')
-
-    if (b.textContent == 'Marquer') {
         b.innerHTML = 'Démarquer'
+    
 
-    } else if (b.textContent == 'Démarquer') {
+        
+    } if (b.textContent == 'Démarquer') {
         b.innerHTML ='Marquer'
+        //localstorage = marquer
     }  
-}
+
+    /*
+
+    let q = 4
+let search
+
+let inventaire = [
+                     {nom: 'pommes', quantité: 2},
+                     {nom: 'bananes', quantité: 0},
+                     {nom: 'cerises', quantité: 5}
+                   ];
+
+let resultat = inventaire.find( search => search.nom === 'cerises');
+resultat.quantité = 8
+console.log(resultat.quantité);
+
+
+    tableau
+    name,"texte","flag"
+    0,"prout","non"
+    1,"youpi","oui"
+
+
+    */
+    
+    
+
 
 function validation () {
     let modal = document.getElementById('modal')
@@ -65,14 +119,17 @@ function validation () {
     }
 }
 
-function saveLocal(data) {
-    let tab
+function saveLocal(name,data,mark) {
+    let tab, tab3D
+
     if (localStorage.getItem('tab') === null) {
         tab = []
     } else {
         tab = JSON.parse(localStorage.getItem('tab'))
     }
-    tab.push(data)
+
+    tab3D = [[name],[data],[mark]]
+    tab.push(tab3D)
     localStorage.setItem('tab', JSON.stringify(tab))
 }
 
@@ -95,10 +152,11 @@ function getLocal() {
     } else {
         tab = JSON.parse(localStorage.getItem('tab'))
     }
+
     tab.forEach(function(element) {
         let li = document.createElement('li')
-
         li.appendChild(document.createTextNode(element))
+       // li.classList.add(element)
         ul.appendChild(li)
         li.setAttribute('name', number)
         element =''
@@ -119,6 +177,21 @@ function getLocal() {
         number++
     })
 }
+
+//----------------------TEST----------------------------------------------
+/*
+function getMark() {
+    let tabMark
+    if (localStorage.getItem('tabMark') === null) {
+        tabMark = []
+    } else {
+        tabMark = JSON.parse(localStorage.getItem('tabMark'))
+    }
+    tabMark.forEach(function (element) {
+        li.classList.add(element)
+})
+}
+*/
 
 addButton.addEventListener('click', validation)
 document.addEventListener('DOMContentLoaded', getLocal)
