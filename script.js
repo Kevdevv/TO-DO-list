@@ -1,5 +1,4 @@
-localStorage.clear()
-//prout
+//localStorage.clear()
 let input = document.getElementById('input')
 let addButton = document.getElementById('add')
 let ul = document.querySelector('ul')
@@ -44,71 +43,25 @@ function supp(a, text) {
     allElements[0].classList.add('supprimer')
 }
 
-function saveMark(mark) {
-    let tabMark
-    if (localStorage.getItem('tabMark') === null) {
-        tabMark = []
-    } else {
-        tabMark = JSON.parse(localStorage.getItem('tabMark'))
-    }
-    tabMark.push(mark)
-    localStorage.setItem('tabMark', JSON.stringify(tabMark))
-}
-
-function removeMark(mark) {
-    let tabMark
-    if (localStorage.getItem('tabMark') === null) {
-        tabMark = []
-    } else {
-        tabMark = JSON.parse(localStorage.getItem('tabMark'))
-    }
-    tab.splice(tabMark.indexOf(mark), 1)
-    localStorage.setItem('tab', JSON.stringify(tabMark))
-}
-
 function mark(a,b) {
 
-    let tab3D = JSON.parse(localStorage.getItem('tab'))
+    let tab = JSON.parse(localStorage.getItem('tab'))
     let allElements = document.getElementsByName(a)
 
-    
-
     allElements[0].classList.toggle('mark')
+
+    if (b.textContent == "Marquer")
+    {
         b.innerHTML = 'Démarquer'
-    
-
-        
-    } if (b.textContent == 'Démarquer') {
+        tab[a][2] = "oui"  
+    } else if (b.textContent == 'Démarquer') {
         b.innerHTML ='Marquer'
-        //localstorage = marquer
-    }  
+        tab[a][2] = "non"
+    }
 
-    /*
-
-    let q = 4
-let search
-
-let inventaire = [
-                     {nom: 'pommes', quantité: 2},
-                     {nom: 'bananes', quantité: 0},
-                     {nom: 'cerises', quantité: 5}
-                   ];
-
-let resultat = inventaire.find( search => search.nom === 'cerises');
-resultat.quantité = 8
-console.log(resultat.quantité);
-
-
-    tableau
-    name,"texte","flag"
-    0,"prout","non"
-    1,"youpi","oui"
-
-
-    */
-    
-    
-
+    localStorage.clear()
+    localStorage.setItem('tab', JSON.stringify(tab))
+}  
 
 function validation () {
     let modal = document.getElementById('modal')
@@ -128,10 +81,11 @@ function saveLocal(name,data,mark) {
         tab = JSON.parse(localStorage.getItem('tab'))
     }
 
-    tab3D = [[name],[data],[mark]]
+    tab3D = [[name], [data], [mark]]
     tab.push(tab3D)
     localStorage.setItem('tab', JSON.stringify(tab))
 }
+
 
 function removeLocal(data) {
     let tab
@@ -154,12 +108,11 @@ function getLocal() {
     }
 
     tab.forEach(function(element) {
+
         let li = document.createElement('li')
-        li.appendChild(document.createTextNode(element))
-       // li.classList.add(element)
+        li.appendChild(document.createTextNode(element[1]))
         ul.appendChild(li)
-        li.setAttribute('name', number)
-        element =''
+        li.setAttribute('name', element[0])
     
         let btn = document.createElement('button')
         btn.className = 'btn-small'
@@ -167,31 +120,23 @@ function getLocal() {
         btnTwo.className = 'btn-small btn-danger'
     
         btn.appendChild(document.createTextNode('Supprimer'))
-        btnTwo.appendChild(document.createTextNode('Marquer'))
         
         li.appendChild(btn)
         li.appendChild(btnTwo)
+
+        if (element[2] == 'oui'){
+            li.classList.add('mark')
+            btnTwo.appendChild(document.createTextNode('Démarquer'))
+        }
+        else{
+            btnTwo.appendChild(document.createTextNode('Marquer'))
+        }
+            
     
         btn.addEventListener('click',() => {supp(li.getAttribute('name'))})
         btnTwo.addEventListener('click', () => { mark(li.getAttribute('name'), btnTwo) })
-        number++
     })
 }
-
-//----------------------TEST----------------------------------------------
-/*
-function getMark() {
-    let tabMark
-    if (localStorage.getItem('tabMark') === null) {
-        tabMark = []
-    } else {
-        tabMark = JSON.parse(localStorage.getItem('tabMark'))
-    }
-    tabMark.forEach(function (element) {
-        li.classList.add(element)
-})
-}
-*/
 
 addButton.addEventListener('click', validation)
 document.addEventListener('DOMContentLoaded', getLocal)
